@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>แบบฟอร์มกรอกข้อมูล</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    .hidden {
+      display: none !important;
+    }
+    body {
+  background-image: url('/img/background.jpg');
+  background-size: cover;             /* ทำให้ภาพขยายให้เต็มหน้าจอ */
+  background-position: center center; /* จัดให้อยู่ตรงกลางแนวตั้งและแนวนอน */
+  background-repeat: no-repeat;       /* ไม่ให้ภาพซ้ำ */
+  background-attachment: fixed;       /* ทำให้พื้นหลังไม่เลื่อนตามเนื้อหา */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    h2 {
+      color: #343a40;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .form-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    .btn-primary {
+      background: #0056b3;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: #004494;
+    }
+    label {
+      font-weight: 600;
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <div class="form-container">
+        <img src="/img/logo.png" style="height: 70px;">
+      <h2 class="text-center">กรุณากรอกข้อมูล</h2>
+
+      <form id="userForm" novalidate>
+        <div class="form-group">
+          <label for="userType">ประเภทผู้กรอกข้อมูล:</label>
+          <select id="userType" name="userType" class="form-control" required>
+            <option value="" disabled selected>-- กรุณาเลือก --</option>
+            <option value="individual">คนทั่วไป</option>
+            <option value="corporate">นิติบุคคล</option>
+          </select>
+          <div class="invalid-feedback">กรุณาเลือกประเภทผู้กรอกข้อมูล</div>
+        </div>
+
+        <!-- ฟิลด์สำหรับคนทั่วไป -->
+        <div id="individualFields" class="hidden">
+          <div class="form-group">
+            <label for="fullName">ชื่อ - นามสกุล:</label>
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="ชื่อ - นามสกุล" />
+            <div class="invalid-feedback">กรุณากรอกชื่อและนามสกุล</div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">ที่อยู่:</label>
+            <input type="text" id="address" name="address" class="form-control" placeholder="ที่อยู่" />
+            <div class="invalid-feedback">กรุณากรอกที่อยู่</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">เบอร์โทร:</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="เบอร์โทร" pattern="^[0-9]+$" />
+            <div class="invalid-feedback">กรุณากรอกเบอร์โทรที่ถูกต้อง</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">อีเมล:</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" />
+            <div class="invalid-feedback">กรุณากรอกอีเมลที่ถูกต้อง</div>
+          </div>
+        </div>
+
+        <!-- ฟิลด์สำหรับนิติบุคคล -->
+        <div id="corporateFields" class="hidden">
+          <div class="form-group">
+            <label for="companyName">ชื่อบริษัท:</label>
+            <input type="text" id="companyName" name="companyName" class="form-control" placeholder="ชื่อบริษัท" />
+            <div class="invalid-feedback">กรุณากรอกชื่อบริษัท</div>
+          </div>
+
+          <div class="form-group">
+            <label for="taxId">เลขประจำตัวผู้เสียภาษี:</label>
+            <input type="text" id="taxId" name="taxId" class="form-control" placeholder="เลขประจำตัวผู้เสียภาษี" pattern="^[0-9]{13}$" />
+            <div class="invalid-feedback">กรุณากรอกเลขประจำตัวผู้เสียภาษี 13 หลัก</div>
+          </div>
+
+          <div class="form-group">
+            <label for="companyAddress">ที่ตั้ง:</label>
+            <input type="text" id="companyAddress" name="companyAddress" class="form-control" placeholder="ที่ตั้งบริษัท" />
+            <div class="invalid-feedback">กรุณากรอกที่ตั้งบริษัท</div>
+          </div>
+
+          <div class="form-group">
+            <label for="companyPhone">เบอร์โทร:</label>
+            <input type="tel" id="companyPhone" name="companyPhone" class="form-control" placeholder="เบอร์โทรบริษัท" pattern="^[0-9]+$" />
+            <div class="invalid-feedback">กรุณากรอกเบอร์โทรที่ถูกต้อง</div>
+          </div>
+
+          <div class="form-group">
+            <label for="companyEmail">อีเมล:</label>
+            <input type="email" id="companyEmail" name="companyEmail" class="form-control" placeholder="example@email.com" />
+            <div class="invalid-feedback">กรุณากรอกอีเมลที่ถูกต้อง</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">ส่งข้อมูล</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script>
+    (function () {
+      const userType = document.getElementById("userType");
+      const individualFields = document.getElementById("individualFields");
+      const corporateFields = document.getElementById("corporateFields");
+      const form = document.getElementById("userForm");
+
+      // Show / hide fields based on user type selected
+      userType.addEventListener("change", function () {
+        if (this.value === "individual") {
+          individualFields.classList.remove("hidden");
+          corporateFields.classList.add("hidden");
+          setRequired(individualFields, true);
+          setRequired(corporateFields, false);
+        } else if (this.value === "corporate") {
+          corporateFields.classList.remove("hidden");
+          individualFields.classList.add("hidden");
+          setRequired(corporateFields, true);
+          setRequired(individualFields, false);
+        } else {
+          individualFields.classList.add("hidden");
+          corporateFields.classList.add("hidden");
+          setRequired(individualFields, false);
+          setRequired(corporateFields, false);
+        }
+      });
+
+      // Set required attribute for inputs inside a container
+      function setRequired(container, isRequired) {
+        const inputs = container.querySelectorAll("input");
+        inputs.forEach(input => {
+          if (isRequired) {
+            input.setAttribute("required", "required");
+          } else {
+            input.removeAttribute("required");
+            input.classList.remove("is-invalid");
+          }
+        });
+      }
+
+      // Bootstrap custom validation on submit
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (form.checkValidity() === false) {
+          // Show validation feedback for all invalid fields
+          form.classList.add("was-validated");
+          markInvalidFields(form);
+          return;
+        }
+
+        // If validation passes, show success message or you can handle form data here
+        alert("ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณครับ!");
+        form.reset();
+        individualFields.classList.add("hidden");
+        corporateFields.classList.add("hidden");
+        form.classList.remove("was-validated");
+      });
+
+      // Mark invalid fields with Bootstrap styles
+      function markInvalidFields(form) {
+        const elements = form.elements;
+        for (let i = 0; i < elements.length; i++) {
+          const el = elements[i];
+          if (el.willValidate) {
+            if (!el.checkValidity()) {
+              el.classList.add("is-invalid");
+            } else {
+              el.classList.remove("is-invalid");
+            }
+          }
+        }
+      }
+
+    })();
+  </script>
+</body>
+</html>
+
